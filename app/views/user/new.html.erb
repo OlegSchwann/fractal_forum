@@ -1,0 +1,39 @@
+<h1>Регистрация на форуме</h1>
+<!-- Форма регистрации -->
+<div id="registr_status"></div>
+<form name="login_form">
+  <input id="login" type="text" placeholder="login">
+  <br>
+  <input id="password" type="password" placeholder="password">
+  <br>
+  <input id="password_confirmation" type="password" placeholder="password confirmation">
+  <br>
+  <input id="login_form_submit" type="button" value="зарегистрироваться" onclick="void(0)">
+</form>
+<%= link_to 'На главную', '/' %>
+<script>
+    // хочу, что бы авторизация делалась через post запрос и выполнение сразу отображалось
+    // пользователю
+    function send_form_data() {
+        //куча примеров, но они все не работают, достаём как умеем
+        var login = document.getElementById("login").value;
+        var password = document.getElementById("password").value;
+        var password_confirmation = document.getElementById("password_confirmation").value;
+        if(password !== password_confirmation){
+            document.getElementById('registr_status').innerText = "Пароли не совпадают!";
+        } else {
+            // отослать данные post запросом
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/user/create?login="+login+"&password="+password, true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    // Typical action to be performed when the document is ready:
+                    var json_obj = JSON.parse(xhr.responseText);
+                    document.getElementById('registr_status').innerText = json_obj['message'];
+                }
+            };
+            xhr.send();
+        }
+    }
+    document.getElementById('login_form_submit').onclick = send_form_data;
+</script>

@@ -1,3 +1,46 @@
 // Place all the styles related to the page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/*загружаем шрифт*/
+@font-face {
+  font-family: OCR; /* Имя шрифта */
+  src: url(/OCR.ttf); /* Путь к файлу со шрифтом */
+}
+body{
+  background: #F3FFEE;
+  font-family: OCR;
+  color: #133C01;
+}
+.child_comments {
+  border-left: 2px groove #A0A0A0;
+  padding: 0 10px; /* Расстояние между линией и текстом */
+  margin-left: 10px; /* Отступы справа и слева */
+  min-width: 90%;
+}
+.ansver{
+  color: #284D18;
+}
+.ansver:hover{
+  color: #1E9749;
+}
+textarea{
+  min-width: 90%;
+  min-height: 40%;
+  column-span: 100;
+}
+.title{
+  min-width: 100%;
+  background: #133C01;
+  height: 10%;
+  color: lemonchiffon;
+}
+.right {
+  margin: 0 0 0 auto;
+}
+a {
+  text-decoration: none; /* Отменяем подчеркивание у ссылки */
+  color: lemonchiffon;
+}
+.register_link{
+  color: lemonchiffon;
+}
