@@ -7,7 +7,6 @@ class Comment < ApplicationRecord
         # заглавный комментарий - пост
         root = Comment.find_by_id(comment_id)
         get_child(root, 5)
-        p root
         return root
     end
 

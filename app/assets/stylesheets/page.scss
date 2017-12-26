@@ -19,6 +19,7 @@ body{
 }
 .ansver{
   color: #284D18;
+  cursor: pointer;
 }
 .ansver:hover{
   color: #1E9749;
@@ -39,7 +40,6 @@ textarea{
 }
 a {
   text-decoration: none; /* Отменяем подчеркивание у ссылки */
-  color: lemonchiffon;
 }
 .register_link{
   color: lemonchiffon;

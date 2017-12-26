@@ -13,7 +13,7 @@ Comment.create(
     'отвечая на другие сообщения. Обратитесь к любому сообщению, '\
     'что бы раскрыть ответы на 5 вглубь. Хорошего настроения!',
   login: 'Root',
-  perent_comment_id: 1
+  perent_comment_id: 0
 )
 Comment.create(
     message:

@@ -16,8 +16,13 @@ function process_comment_field(elem, comment_id) {
     if(opened_comment){
         //если он в другом месте - удаляем там и создаём здесь
         if (opened_comment !== current_comment_id){
-            document.getElementById(opened_comment).remove();
-            opened_comment = null;
+            try {
+                document.getElementById(opened_comment).remove();
+                //Если использовать turbolinks, то переменные сохраняются.
+                //А сам элемент может уйти со страницы.
+            } catch (TypeError){
+                opened_comment = null;
+            }
             elem.insertAdjacentHTML('beforeBegin', write_comment_area);
             opened_comment = current_comment_id;
         } else { //если он в этом месте - удаляем здесь

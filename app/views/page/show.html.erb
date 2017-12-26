@@ -2,9 +2,9 @@
 <%# все script теперь в /home/oleg/RubymineProjects/Проект/Forum/app/assets/javascripts/page.js %>
 
 <div class="title">
-  <a href="/"><h1>Фрактальный форум</h1></a>
+  <a href="/"><h1 class="title">Фрактальный форум</h1></a>
   <% if @is_login %>
-    Рад видеть вас, <%= @login %>!
+    <p class="helo">Рад видеть вас, <%= @login %>!</p>
     <form method="post" action="/user/departed_user">
       <input type="submit" value="выйти">
     </form>
@@ -12,7 +12,7 @@
     <form class="right" method="post" action="/user/login">
       <input name="login" type="text">
       <input name="password" type="password">
-      <input type="submit" value="🚪 🚶">
+      <input type="submit" value="🚪 🚶" id="in_button">
     </form>
     <a class="register_link" href="/user/new" >😶 → 🛂 → 😎💬</a>
   <% end %>
@@ -22,61 +22,58 @@
   <a href="/comment/<%= @comment_tree.perent_comment_id%>">Выше ↑</a><br>
 <% end %>
 <div>
-  <%= @comment_tree.login %>
+  <%= @comment_tree.login%>
   <a href="/comment/<%=@comment_tree.id%>"><%= @comment_tree.id%></a>
   <br>
   <%= @comment_tree.message %>
   <br>
-  <span class="ansver" onclick="process_comment_field(this, <%=@comment_tree.id%>)">
-    📝 <%#ссылочка 📝 под каждым сообщением%>
-  </span>
+  <% if @is_login %>
+    <span class="ansver" onclick="process_comment_field(this, <%=@comment_tree.id%>)">📝</span>
+  <% end %>
   <div class="child_comments">
     <% for child_1 in @comment_tree.child_comments%>
       <div>
-        <%= child_1.login %>
+        <%= child_1.login%>
         <a href="/comment/<%=child_1.id%>"><%= child_1.id%></a>
         <br>
         <%= child_1.message %>
         <br>
-        <span class="ansver" onclick="process_comment_field(this, <%=child_1.id%>)">
-          📝 <%#ссылочка 📝 под каждым сообщением%>
-        </span>
+        <% if @is_login %>
+          <span class="ansver" onclick="process_comment_field(this, <%=child_1.id%>)">📝</span>
+        <% end %>
         <div class="child_comments">
           <% for child_2 in child_1.child_comments%>
             <div>
-              <%= child_2.login %>
+              <%= child_2.login%>
               <a href="/comment/<%=child_2.id%>"><%= child_2.id%></a>
               <br>
               <%= child_2.message %>
               <br>
-              <span class="ansver" onclick="process_comment_field(this, <%=child_2.id%>)">
-                📝 <%#ссылочка 📝 под каждым сообщением%>
-              </span>
+              <% if @is_login %>
+                <span class="ansver" onclick="process_comment_field(this, <%=child_2.id%>)">📝</span>
+              <% end %>
               <div class="child_comments">
                 <% for child_3 in child_2.child_comments%>
                   <div>
-                    <%= child_3.login %>
+                    <%= child_3.login%>
                     <a href="/comment/<%=child_3.id%>"><%= child_3.id%></a>
                     <br>
                     <%= child_3.message %>
                     <br>
-                    <span class="ansver" onclick="process_comment_field(this, <%=child_3.id%>)">
-                      📝 <%#ссылочка 📝 под каждым сообщением%>
-                    </span>
+                    <% if @is_login %>
+                      <span class="ansver" onclick="process_comment_field(this, <%=child_3.id%>)"> 📝 </span>
+                    <% end %>
                     <div class="child_comments">
                       <% for child_4 in child_3.child_comments%>
                         <div>
-                          <%= child_4.login %>
+                          <%= child_4.login%>
                           <a href="/comment/<%=child_4.id%>"><%= child_4.id%></a>
                           <br>
                           <%= child_4.message %>
                           <br>
-                          <span class="ansver" onclick="process_comment_field(this, <%=child_4.id%>)">
-                            📝 <%#ссылочка 📝 под каждым сообщением%>
-                          </span>
-                          <div class="child_comments">
-
-                          </div>
+                          <% if @is_login %>
+                            <span class="ansver" onclick="process_comment_field(this, <%=child_4.id%>)">📝</span>
+                          <% end %>
                         </div>
                       <% end %>
                     </div>
@@ -90,4 +87,3 @@
     <% end %>
   </div>
 </div>
-

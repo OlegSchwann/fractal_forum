@@ -1,0 +1,24 @@
+<%#= render 'page/_one_comment', locals: {record: @comment_tree}%>
+
+
+<div>
+  <% if record
+         p record
+  end%>
+  <%= record.login%>
+  <a href="/comment/<%=record.id%>"><%= record.id%></a>
+  <br>
+  <%= record.message %>
+  <br>
+  <% if @is_login %>
+    <span class="ansver"
+          onclick="process_comment_field(this, <%=record.id%>)">
+          📝
+    </span>
+  <% end %>
+  <div class="child_comments">
+    <% for child in record.child_comments%>
+      <%= render partial: 'one_comment', locals: {record: child} %>
+    <% end %>
+  </div>
+</div>
